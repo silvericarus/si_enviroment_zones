@@ -1,14 +1,14 @@
 Citizen.CreateThread(function()
-    local playerPed = PlayerPedId()
-    local playerCoords = GetEntityCoords(playerPed)
     while true do
+        local playerPed = PlayerPedId()
+        local playerCoords = GetEntityCoords(playerPed)
         for _, zone in pairs(Config.Zones) do
             if #(playerCoords - zone.coords) < zone.radius then
                 TriggerServerEvent("si_enviroment_zones:playerEnteredZone", zone.name, zone.message)
                 break -- Exit the loop if the player is in a zone
             end
         end
-        Citizen.Wait(1000) -- Check every seconds
+        Citizen.Wait(1000) -- Check every second
     end
 end)
 
